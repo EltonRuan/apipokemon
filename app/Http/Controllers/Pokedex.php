@@ -6,6 +6,9 @@ use App\Models\Trainer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Str;
+
+
 class Pokedex extends Controller
 {
     /**
@@ -55,4 +58,45 @@ class Pokedex extends Controller
             ], 422);
         }
     }
+
+    public function signin(Request $request)
+    {
+        try {
+            // Validação dos campos obrigatórios
+            $validated = $request->validate([
+                'username' => 'required|string|max:255',
+                'password' => 'required|string|min:6',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Retornar mensagem personalizada de erro 422
+            return response()->json([
+                'message' => 'Treinador, faltam dados para podermos autenticar você na sua Pokédex',
+            ], 422);
+        }
+
+        // Verificar se o treinador existe
+        $trainer = Trainer::where('username', $validated['username'])->first();
+
+        // Se o treinador não existir ou a senha estiver incorreta
+        if (!$trainer || !Hash::check($validated['password'], $trainer->password)) {
+            return response()->json([
+                'message' => 'Treinador, parece que seus dados estão incorretos, confira e tente novamente',
+            ], 401);
+        }
+
+        // Gerar token
+        $token = Str::random(60); // Gera um token aleatório
+
+        // Salvar o token no banco de dados
+        $trainer->token = $token;
+        $trainer->save();
+
+        // Retornar o token para o treinador
+        return response()->json([
+            'token' => $token,
+        ], 200);
+    }
+
+
+
 }
