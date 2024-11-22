@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('city'); // Cidade
             $table->string('username')->unique(); // Nome de usuário único
             $table->string('password'); // Senha (será armazenada criptografada)
+            $table->string('token')->nullable();
             $table->timestamps(); // Campos created_at e updated_at
         });
 
