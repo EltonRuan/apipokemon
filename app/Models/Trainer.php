@@ -9,7 +9,7 @@ class Trainer extends Model
 {
     use HasFactory;
 
-    protected $table = 'trainadores'; // Nome da tabela no banco de dados
+    protected $table = 'treinadores'; // Nome da tabela no banco de dados
 
     /**
      * Os atributos que podem ser atribuídos em massa.

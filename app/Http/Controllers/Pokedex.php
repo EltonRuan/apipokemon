@@ -2,9 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trainer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class Pokedex extends Controller
 {
-    //
+    /**
+     * Handle the signup of a new trainer.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function signup(Request $request)
+    {
+        // Verifica se o username já está em uso
+        if (Trainer::where('username', $request->username)->exists()) {
+            return response()->json([
+                'message' => 'Não foi possível realizar seu cadastro na Pokédex devido ao seu cadastro já existir, prossiga para o login na sua Pokédex'
+            ], 422);
+        }
+
+        // Validação dos campos obrigatórios
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'birthdate' => 'required|date',
+            'city' => 'required|string|max:255',
+            'username' => 'required|string|max:255',  // A verificação de unicidade foi feita antes
+            'password' => 'required|string|min:6',
+        ]);
+
+        try {
+            // Criando um novo treinador
+            Trainer::create([
+                'name' => $validated['name'],
+                'lastname' => $validated['lastname'],
+                'birthdate' => $validated['birthdate'],
+                'city' => $validated['city'],
+                'username' => $validated['username'],
+                'password' => Hash::make($validated['password']), // Senha criptografada
+            ]);
+
+            return response()->json([
+                'message' => 'Treinador, você foi registrado com sucesso na sua Pokédex'
+            ], 201);
+
+        } catch (\Exception $e) {
+            // Caso ocorra outro erro
+            return response()->json([
+                'message' => 'Não foi possível realizar seu cadastro na Pokédex devido a informações faltando ou conflitantes',
+            ], 422);
+        }
+    }
 }

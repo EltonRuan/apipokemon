@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Pokedex;
 
-Route::get('/teste', function () {
-    return view('welcome');
-});
+Route::post('/signup', [Pokedex::class, 'signup']);
+
+Route::post('/signup', [Pokedex::class, 'signup']);
