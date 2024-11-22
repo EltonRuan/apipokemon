@@ -50,7 +50,6 @@ class Pokedex extends Controller
             return response()->json([
                 'message' => 'Treinador, você foi registrado com sucesso na sua Pokédex'
             ], 201);
-
         } catch (\Exception $e) {
             // Caso ocorra outro erro
             return response()->json([
@@ -96,7 +95,44 @@ class Pokedex extends Controller
             'token' => $token,
         ], 200);
     }
+    public function logout(Request $request)
+    {
+        // Obtém o cabeçalho 'Authorization'
+        $authHeader = $request->header('Authorization');
 
+        // Verifica se o cabeçalho foi fornecido
+        if (!$authHeader) {
+            return response()->json([
+                'message' => 'Treinador, faltou informar seu token',
+            ], 422);
+        }
 
+        // Verifica se o cabeçalho começa com 'Bearer '
+        if (!str_starts_with($authHeader, 'Bearer ')) {
+            return response()->json([
+                'message' => 'Treinador, este token não é mais válido',
+            ], 401);
+        }
 
+        // Extrai o token do cabeçalho
+        $token = substr($authHeader, 7);
+
+        // Busca o treinador com o token fornecido
+        $trainer = Trainer::where('token', $token)->first();
+
+        // Verifica se o token é válido
+        if (!$trainer) {
+            return response()->json([
+                'message' => 'Treinador, este token não é mais válido',
+            ], 401);
+        }
+
+        // Remove o token do banco de dados (faz logout)
+        $trainer->update(['token' => null]);
+
+        // Retorna a resposta de sucesso
+        return response()->json([
+            'message' => 'Você saiu da sua Pokédex com sucesso',
+        ], 200);
+    }
 }
