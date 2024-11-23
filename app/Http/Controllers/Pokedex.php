@@ -95,7 +95,7 @@ class Pokedex extends Controller
             'token' => $token,
         ], 200);
     }
-    
+
     public function logout(Request $request)
     {
         // Obtém o token do cabeçalho
@@ -128,4 +128,41 @@ class Pokedex extends Controller
             'message' => 'Você saiu da sua Pokédex com sucesso',
         ], 200);
     }
+
+    public function getTrainerData(Request $request)
+    {
+        // Obtém o token do cabeçalho
+        $authorizationHeader = $request->header('Authorization');
+
+        // Verifica se o token foi informado
+        if (!$authorizationHeader) {
+            return response()->json([
+                'message' => 'Treinador, faltou informar seu token',
+            ], 422);
+        }
+
+        // Remove o prefixo "Bearer " do token
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+
+        // Busca o treinador com o token
+        $trainer = Trainer::where('token', $token)->first();
+
+        // Verifica se o token é válido
+        if (!$trainer) {
+            return response()->json([
+                'message' => 'Treinador, este token não é mais válido',
+            ], 401);
+        }
+
+        // Retorna os dados do treinador
+        return response()->json([
+            'name' => $trainer->name,
+            'lastname' => $trainer->lastname,
+            'birthdate' => $trainer->birthdate,
+            'city' => $trainer->city,
+            'username' => $trainer->username,
+        ], 200);
+    }
+
+    
 }
