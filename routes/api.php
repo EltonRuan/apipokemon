@@ -10,3 +10,8 @@ Route::post('/signin', [Pokedex::class, 'signin']);
 Route::get('/logout', [Pokedex::class, 'logout']);
 
 Route::get('/trainer/data', [Pokedex::class, 'getTrainerData']);
+
+/* */
+
+Route::get('/pokemon/read', [Pokedex::class, '']);
+
