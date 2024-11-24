@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trainer;
+use App\Models\Pokemon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -163,6 +164,75 @@ class Pokedex extends Controller
             'username' => $trainer->username,
         ], 200);
     }
+
+    public function savePokemon(Request $request)
+    {
+        // Obtém o token do cabeçalho
+        $authorizationHeader = $request->header('Authorization');
+    
+        // Verifica se o token foi informado
+        if (!$authorizationHeader) {
+            return response()->json([
+                'message' => 'Treinador, faltou informar seu token',
+            ], 422);
+        }
+    
+        // Remove o prefixo "Bearer " do token
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+    
+        // Verifica se o token é válido
+        $trainer = Trainer::where('token', $token)->first();
+        if (!$trainer) {
+            return response()->json([
+                'message' => 'Treinador, este token não é mais válido',
+            ], 401);
+        }
+    
+        // Validação dos campos obrigatórios
+        $validatedData = $request->validate([
+            'id' => 'nullable|integer', // ID pode ser nulo para novos registros
+            'name' => 'nullable|array', // Nome como array para múltiplos idiomas
+            'type' => 'nullable|array', // Tipos como array
+            'base' => 'nullable|array', // Atributos base como array
+            'species' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'evolution' => 'nullable|array', // Evoluções como array
+            'profile' => 'nullable|array', // Perfil como array
+            'image' => 'nullable|array', // Imagens como array
+        ]);
+    
+        // Verifica se o Pokémon já existe
+        $pokemon = Pokemon::find($validatedData['id']);
+    
+        if ($pokemon) {
+            // Atualiza os dados do Pokémon
+            $pokemon->update([
+                'name' => $validatedData['name'] ?? $pokemon->name,
+                'type' => $validatedData['type'] ?? $pokemon->type,
+                'base' => $validatedData['base'] ?? $pokemon->base,
+                'species' => $validatedData['species'] ?? $pokemon->species,
+                'description' => $validatedData['description'] ?? $pokemon->description,
+                'evolution' => $validatedData['evolution'] ?? $pokemon->evolution,
+                'profile' => $validatedData['profile'] ?? $pokemon->profile,
+                'image' => $validatedData['image'] ?? $pokemon->image,
+            ]);
+    
+            return response()->json([
+                'message' => 'Dados do Pokémon atualizados com sucesso',
+            ], 200);
+        } else {
+            // Cria um novo Pokémon
+            $validatedData['trainer_id'] = $trainer->id; // Relaciona o Pokémon ao treinador
+    
+            Pokemon::create($validatedData);
+    
+            return response()->json([
+                'message' => 'Pokémon criado com sucesso na base de dados',
+            ], 201);
+        }
+    }
+    
+    
 
     
 }

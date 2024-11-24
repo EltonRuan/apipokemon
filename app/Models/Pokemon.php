@@ -16,33 +16,26 @@ class Pokemon extends Model
      */
     protected $fillable = [
         'name',
-        'type',          // JSON
-        'hp',
-        'attack',
-        'defense',
-        'sp_attack',
-        'sp_defense',
-        'speed',
+        'type',
+        'base',
         'species',
         'description',
-        'evolution',     // JSON
-        'height',
-        'weight',
-        'egg_groups',    // JSON
-        'abilities',     // JSON
-        'gender_ratio',
-        'image_url',
+        'evolution',
+        'profile',
+        'image',
+        'trainer_id',
     ];
-
-    /**
-     * Casting de atributos para tipos específicos.
-     */
+    
     protected $casts = [
+        'name' => 'array',
         'type' => 'array',
+        'base' => 'array',
         'evolution' => 'array',
-        'egg_groups' => 'array',
-        'abilities' => 'array',
+        'profile' => 'array',
+        'image' => 'array',
     ];
+    
+    
 
     /**
      * Relação: Pokémon pertence a um Trainer.

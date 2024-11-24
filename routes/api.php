@@ -13,5 +13,5 @@ Route::get('/trainer/data', [Pokedex::class, 'getTrainerData']);
 
 /* */
 
-Route::get('/pokemon/read', [Pokedex::class, '']);
+Route::post('/pokemon/read', [Pokedex::class, 'savePokemon']);
 
