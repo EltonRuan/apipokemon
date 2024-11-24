@@ -17,5 +17,8 @@ Route::post('/pokemon/read', [Pokedex::class, 'savePokemon']);
 
 Route::get('/pokemon/list', [Pokedex::class, 'listPokemon']);
 
+Route::post('/pokemon/view', [Pokedex::class, 'viewPokemon']);
+
+
 
 

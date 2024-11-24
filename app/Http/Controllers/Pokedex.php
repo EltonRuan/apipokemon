@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Str;
-    
+
 
 class Pokedex extends Controller
 {
@@ -169,17 +169,17 @@ class Pokedex extends Controller
     {
         // Obtém o token do cabeçalho
         $authorizationHeader = $request->header('Authorization');
-    
+
         // Verifica se o token foi informado
         if (!$authorizationHeader) {
             return response()->json([
                 'message' => 'Treinador, faltou informar seu token',
             ], 422);
         }
-    
+
         // Remove o prefixo "Bearer " do token
         $token = str_replace('Bearer ', '', $authorizationHeader);
-    
+
         // Verifica se o token é válido
         $trainer = Trainer::where('token', $token)->first();
         if (!$trainer) {
@@ -187,7 +187,7 @@ class Pokedex extends Controller
                 'message' => 'Treinador, este token não é mais válido',
             ], 401);
         }
-    
+
         // Validação dos campos obrigatórios
         $validatedData = $request->validate([
             'id' => 'nullable|integer', // ID pode ser nulo para novos registros
@@ -200,10 +200,10 @@ class Pokedex extends Controller
             'profile' => 'nullable|array', // Perfil como array
             'image' => 'nullable|array', // Imagens como array
         ]);
-    
+
         // Verifica se o Pokémon já existe
         $pokemon = Pokemon::find($validatedData['id']);
-    
+
         if ($pokemon) {
             // Atualiza os dados do Pokémon
             $pokemon->update([
@@ -216,64 +216,107 @@ class Pokedex extends Controller
                 'profile' => $validatedData['profile'] ?? $pokemon->profile,
                 'image' => $validatedData['image'] ?? $pokemon->image,
             ]);
-    
+
             return response()->json([
                 'message' => 'Dados do Pokémon atualizados com sucesso',
             ], 200);
         } else {
             // Cria um novo Pokémon
             $validatedData['trainer_id'] = $trainer->id; // Relaciona o Pokémon ao treinador
-    
+
             Pokemon::create($validatedData);
-    
+
             return response()->json([
                 'message' => 'Pokémon criado com sucesso na base de dados',
             ], 201);
         }
     }
-    
-    
+
+
     public function listPokemon(Request $request)
     {
-    // Obtém o token do cabeçalho
-    $authorizationHeader = $request->header('Authorization');
+        // Obtém o token do cabeçalho
+        $authorizationHeader = $request->header('Authorization');
 
-    // Verifica se o token foi informado
-    if (!$authorizationHeader) {
-        return response()->json([
-            'message' => 'Treinador, faltou informar seu token',
-        ], 422);
+        // Verifica se o token foi informado
+        if (!$authorizationHeader) {
+            return response()->json([
+                'message' => 'Treinador, faltou informar seu token',
+            ], 422);
+        }
+
+        // Remove o prefixo "Bearer " do token
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+
+        // Verifica se o token é válido
+        $trainer = Trainer::where('token', $token)->first();
+        if (!$trainer) {
+            return response()->json([
+                'message' => 'Treinador, este token não é mais válido',
+            ], 401);
+        }
+
+        // Consulta os Pokémon cadastrados na base de dados
+        $pokemons = Pokemon::select('id', 'name', 'image')
+            ->where('trainer_id', $trainer->id) // Filtra pelos Pokémon do treinador
+            ->get()
+            ->map(function ($pokemon) {
+                return [
+                    'id' => $pokemon->id,
+                    'name' => [
+                        'english' => $pokemon->name['english'] ?? null,
+                    ],
+                    'image' => [
+                        'hires' => $pokemon->image['hires'] ?? null,
+                    ],
+                ];
+            });
+
+        return response()->json($pokemons, 200);
     }
 
-    // Remove o prefixo "Bearer " do token
-    $token = str_replace('Bearer ', '', $authorizationHeader);
+    public function viewPokemon(Request $request)
+    {
+        // Obtém o token do cabeçalho
+        $authorizationHeader = $request->header('Authorization');
 
-    // Verifica se o token é válido
-    $trainer = Trainer::where('token', $token)->first();
-    if (!$trainer) {
-        return response()->json([
-            'message' => 'Treinador, este token não é mais válido',
-        ], 401);
+        // Verifica se o token foi informado
+        if (!$authorizationHeader) {
+            return response()->json([
+                'message' => 'Treinador, faltou informar seu token',
+            ], 422);
+        }
+
+        // Remove o prefixo "Bearer " do token
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+
+        // Verifica se o token é válido
+        $trainer = Trainer::where('token', $token)->first();
+        if (!$trainer) {
+            return response()->json([
+                'message' => 'Treinador, este token não é mais válido',
+            ], 401);
+        }
+
+        // Valida o corpo da requisição
+        $validatedData = $request->validate([
+            'id' => 'required|integer',
+        ], [
+            'id.required' => 'Treinador, faltou informar o número do Pokémon',
+        ]);
+
+        // Busca o Pokémon pelo ID e verifica se pertence ao treinador
+        $pokemon = Pokemon::where('id', $validatedData['id'])
+            ->where('trainer_id', $trainer->id)
+            ->first();
+
+        if (!$pokemon) {
+            return response()->json([
+                'message' => 'Treinador, este Pokémon não existe na base de dados',
+            ], 404);
+        }
+
+        // Retorna os dados completos do Pokémon
+        return response()->json($pokemon, 200);
     }
-
-    // Consulta os Pokémon cadastrados na base de dados
-    $pokemons = Pokemon::select('id', 'name', 'image')
-        ->where('trainer_id', $trainer->id) // Filtra pelos Pokémon do treinador
-        ->get()
-        ->map(function ($pokemon) {
-            return [
-                'id' => $pokemon->id,
-                'name' => [
-                    'english' => $pokemon->name['english'] ?? null,
-                ],
-                'image' => [
-                    'hires' => $pokemon->image['hires'] ?? null,
-                ],
-            ];
-        });
-
-    return response()->json($pokemons, 200);
-}
-
-    
 }
