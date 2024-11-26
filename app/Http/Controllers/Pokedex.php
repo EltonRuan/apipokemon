@@ -258,7 +258,7 @@ class Pokedex extends Controller
 
         // Consulta os Pokémon cadastrados na base de dados
         $pokemons = Pokemon::select('id', 'name', 'image')
-            ->where('trainer_id', $trainer->id) // Filtra pelos Pokémon do treinador
+        ->where('trainer_id', $trainer->id) // Filtra pelos Pokémon do treinador
             ->get()
             ->map(function ($pokemon) {
                 return [
