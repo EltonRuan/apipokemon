@@ -34,7 +34,7 @@ class Pokedex extends Controller
             'birthdate' => 'required|date',
             'city' => 'required|string|max:255',
             'username' => 'required|string|max:255',  // A verificação de unicidade foi feita antes
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:2',
         ]);
 
         try {
@@ -65,9 +65,9 @@ class Pokedex extends Controller
             // Validação dos campos obrigatórios
             $validated = $request->validate([
                 'username' => 'required|string|max:255',
-                'password' => 'required|string|min:6',
+                'password' => 'required|string|min:2',
             ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (\Exception $e) {
             // Retornar mensagem personalizada de erro 422
             return response()->json([
                 'message' => 'Treinador, faltam dados para podermos autenticar você na sua Pokédex',
