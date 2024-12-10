@@ -127,10 +127,17 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    }
    ```
 
-2. **Erro - Dados incorretos ou faltantes**:
+2. **Erro - Dados faltantes**:
    ```json
    {
        "message": "Treinador, faltam dados para autenticar você na sua Pokédex"
+   }
+   ```
+
+3. **Erro - Dados incorretos**:
+   ```json
+   {
+       "message": "Treinador, parece que seus dados estão incorretos, confira e tente novamente"
    }
    ```
 
@@ -149,10 +156,17 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    }
    ```
 
-2. **Erro - Token inválido ou ausente**:
+2. **Erro - Token inválido**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+3. **Token faltando**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
    }
    ```
 
@@ -175,10 +189,17 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    }
    ```
 
-2. **Erro - Token inválido ou ausente**:
+2. **Erro - Token inválido**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+3. **Token faltando**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
    }
    ```
 
@@ -186,7 +207,7 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 #### **5. Criação ou Edição de Pokémon**
 - **Método:** POST  
-- **Rota:** `/api/pokemon/create-or-update`  
+- **Rota:** `/api/pokemon/read`  
 - **Header:** Authorization Bearer `{{$token}}`
 
 **Payload**:
@@ -228,10 +249,17 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    }
    ```
 
-3. **Erro - Token inválido ou dados faltantes**:
+3. **Erro - Token faltando**:
    ```json
    {
-       "message": "Erro ao processar o Pokémon. Verifique os dados enviados."
+       "message": "Treinador, faltou informar seu token"
+   }
+   ```
+
+   4. **Erro - Token inválido**:
+   ```json
+   {
+       "message": "Treinador, este token não é mais válido"
    }
    ```
 
@@ -265,7 +293,93 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    ]
    ```
 
-2. **Erro - Token inválido**:
+2. **Erro - Token faltando**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
+   }
+   ```
+
+3. **Erro - Token inválido**:
+   ```json
+   {
+       "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+---
+
+#### **7. Pesquisa de Pokémon**
+- **Método:** POST
+- **Rota:** `/api/pokemon/view`  
+- **Header:** Authorization Bearer `{{$token}}`
+
+**Payload**:
+```json
+{
+    "id": 7,
+}
+```
+
+**Retornos**:
+1. **Sucesso**:
+
+```json
+{
+    "id": 7,
+    "name": {
+        "english": "Pikachu",
+        "jp": "ピカチュウ"
+    },
+    "type": [
+        "Electric"
+    ],
+    "base": {
+        "HP": 35,
+        "Attack": 55,
+        "Defense": 40
+    ],
+    "species": "Mouse Pokémon",
+    "description": "Pikachu that can generate powerful electricity.",
+    "evolution": [
+        {
+            "level": 1,
+            "name": "Pichu"
+        },
+        {
+            "level": 2,
+            "name": "Pikachu"
+        }
+    ],
+    "profile": {
+        "height": "0.4m",
+        "weight": "6.0kg"
+    },
+    "image": {
+        "hires": "pikachu-front.png"
+    },
+    "trainer_id": 5,
+    "created_at": "2024-12-10T00:12:57.000000Z",
+    "updated_at": "2024-12-10T00:12:57.000000Z"
+}
+```
+
+2. **Erro - ID faltando**:
+   ```json
+   {
+       "message": "Treinador, faltou informar o número do Pokémon"
+   }
+   ```
+
+
+3. **Erro - Token faltando**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
+   }
+   ```
+
+4. **Erro - Token inválido**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
