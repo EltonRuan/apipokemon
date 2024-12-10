@@ -372,3 +372,5 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 The Pokémon API was created to train practical skills in RESTful API development and data management. 🚀
 
 ---
+
+© 2024 Elton Ruan. All Rights Reserved.
