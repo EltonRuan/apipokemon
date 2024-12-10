@@ -1,16 +1,16 @@
-## **Descrição do Projeto: API Pokémon - São Paulo Skills 2024**
+## **Project Description: Pokémon API - São Paulo Skills 2024**
 
-O **API Pokémon - São Paulo Skills 2024** é um projeto desenvolvido como parte de um simulado prático da competição São Paulo Skills 2024. Ele visa a criação e manipulação de uma API RESTful para gerenciar dados de treinadores e Pokémon. O objetivo é simular um sistema de registro e consulta inspirado no universo Pokémon, promovendo o desenvolvimento de habilidades em programação e lógica.
-
----
-
-### **Contexto da Competição**
-
-A **São Paulo Skills** é uma competição que desafia jovens profissionais a demonstrar suas competências técnicas em diversas áreas, incluindo programação. Este projeto simula cenários reais, permitindo que os participantes testem suas habilidades no desenvolvimento de APIs.
+The **Pokémon API - São Paulo Skills 2024** is a project developed as part of a practical simulation for the São Paulo Skills 2024 competition. It aims to create and manipulate a RESTful API to manage trainer and Pokémon data. The goal is to simulate a registration and query system inspired by the Pokémon universe, promoting the development of programming and logic skills.
 
 ---
 
-### **Tecnologias Utilizadas**
+### **Competition Context**
+
+**São Paulo Skills** is a competition that challenges young professionals to demonstrate their technical skills in various areas, including programming. This project simulates real-world scenarios, allowing participants to test their API development skills.
+
+---
+
+### **Technologies Used**
 - **PHP**  
 - **MySQL**  
 - **Laravel**  
@@ -22,26 +22,26 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-### **Instalação e Configuração**
+### **Installation and Setup**
 
-#### **Pré-requisitos**
-- PHP 7.4 ou superior.  
-- MySQL instalado.  
+#### **Prerequisites**
+- PHP 7.4 or higher.  
+- MySQL installed.  
 - Composer.  
 
-#### **Passo a Passo**
-1. **Clone o Repositório**:
+#### **Step-by-Step**
+1. **Clone the Repository**:
    ```bash
    git clone https://github.com/EltonRuan/apipokemon/
    ```
 
-2. **Instale as Dependências**:
+2. **Install Dependencies**:
    ```bash
    composer install
    ```
 
-3. **Configure o Arquivo .env**:
-   Atualize as credenciais de banco de dados no arquivo `.env`:
+3. **Configure the .env File**:
+   Update the database credentials in the `.env` file:
    ```plaintext
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
@@ -51,23 +51,23 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    DB_PASSWORD=
    ```
 
-4. **Execute as Migrações**:
+4. **Run the Migrations**:
    ```bash
    php artisan migrate
    ```
 
-5. **Inicie o Servidor**:
+5. **Start the Server**:
    ```bash
    php artisan serve
    ```
 
 ---
 
-### **Rotas e Retornos**
+### **Routes and Responses**
 
-#### **1. Cadastro de Treinador**
-- **Método:** POST  
-- **Rota:** `/api/signup`
+#### **1. Trainer Registration**
+- **Method:** POST  
+- **Route:** `/api/signup`
   
 **Payload**:
 ```json
@@ -81,22 +81,22 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 }
 ```
 
-**Retornos**:
-1. **Sucesso**:
+**Responses**:
+1. **Success**:
    ```json
    {
        "message": "Treinador, você foi registrado com sucesso na sua Pokédex"
    }
    ```
 
-2. **Erro - Usuário já cadastrado**:
+2. **Error - User already registered**:
    ```json
    {
        "message": "Não foi possível realizar seu cadastro na Pokédex devido ao seu cadastro já existir, prossiga para o login na sua Pokédex"
    }
    ```
 
-3. **Erro - Dados faltantes**:
+3. **Error - Missing data**:
    ```json
    {
        "message": "Não foi possível realizar seu cadastro na Pokédex devido a informações faltando ou conflitantes"
@@ -105,9 +105,9 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-#### **2. Login de Treinador**
-- **Método:** POST  
-- **Rota:** `/api/signin`
+#### **2. Trainer Login**
+- **Method:** POST  
+- **Route:** `/api/signin`
   
 **Payload**:
 ```json
@@ -117,22 +117,22 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 }
 ```
 
-**Retornos**:
-1. **Sucesso**:
+**Responses**:
+1. **Success**:
    ```json
    {
        "token": "5PMhamPSxmxOO3B0affSyTAN1xtZHM2adgcoFpRgjUII1QeC6GqlArSFrbqS"
    }
    ```
 
-2. **Erro - Dados faltantes**:
+2. **Error - Missing data**:
    ```json
    {
        "message": "Treinador, faltam dados para autenticar você na sua Pokédex"
    }
    ```
 
-3. **Erro - Dados incorretos**:
+3. **Error - Incorrect data**:
    ```json
    {
        "message": "Treinador, parece que seus dados estão incorretos, confira e tente novamente"
@@ -141,27 +141,27 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-#### **3. Logout de Treinador**
-- **Método:** GET  
-- **Rota:** `/api/logout`  
+#### **3. Trainer Logout**
+- **Method:** GET  
+- **Route:** `/api/logout`  
 - **Header:** Authorization Bearer `{{$token}}`
 
-**Retornos**:
-1. **Sucesso**:
+**Responses**:
+1. **Success**:
    ```json
    {
        "message": "Você saiu da sua Pokédex com sucesso"
    }
    ```
 
-2. **Erro - Token inválido**:
+2. **Error - Invalid token**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
    }
    ```
 
-3. **Token faltando**:
+3. **Missing token**:
    ```json
    {
        "message": "Treinador, faltou informar seu token"
@@ -170,13 +170,13 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-#### **4. Dados do Treinador**
-- **Método:** GET  
-- **Rota:** `/api/trainer/data`  
+#### **4. Trainer Data**
+- **Method:** GET  
+- **Route:** `/api/trainer/data`  
 - **Header:** Authorization Bearer `{{$token}}`
 
-**Retornos**:
-1. **Sucesso**:
+**Responses**:
+1. **Success**:
    ```json
    {
        "name": "Elton",
@@ -187,14 +187,14 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    }
    ```
 
-2. **Erro - Token inválido**:
+2. **Error - Invalid token**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
    }
    ```
 
-3. **Token faltando**:
+3. **Missing token**:
    ```json
    {
        "message": "Treinador, faltou informar seu token"
@@ -203,13 +203,13 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-#### **5. Criação ou Edição de Pokémon**
-- **Método:** POST  
-- **Rota:** `/api/pokemon/read`  
+#### **5. Create or Edit Pokémon**
+- **Method:** POST  
+- **Route:** `/api/pokemon/read`  
 - **Header:** Authorization Bearer `{{$token}}`
 
 **Payload**:
-- **Criação**:
+- **Create**:
    ```json
    {
        "id": null,
@@ -223,7 +223,7 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
        "image": {"hires": "pikachu-front.png"}
    }
    ```
-- **Edição**:
+- **Edit**:
    ```json
    {
        "id": 2,
@@ -232,29 +232,29 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    }
    ```
 
-**Retornos**:
-1. **Sucesso - Pokémon Criado**:
+**Responses**:
+1. **Success - Pokémon Created**:
    ```json
    {
        "message": "Pokémon adicionado com sucesso!"
    }
    ```
 
-2. **Sucesso - Pokémon Atualizado**:
+2. **Success - Pokémon Updated**:
    ```json
    {
        "message": "Pokémon atualizado com sucesso!"
    }
    ```
 
-3. **Erro - Token faltando**:
+3. **Error - Missing token**:
    ```json
    {
        "message": "Treinador, faltou informar seu token"
    }
    ```
 
-   4. **Erro - Token inválido**:
+4. **Error - Invalid token**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
@@ -263,13 +263,13 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-#### **6. Listagem de Pokémon**
-- **Método:** GET  
-- **Rota:** `/api/pokemon/list`  
+#### **6. Pokémon List**
+- **Method:** GET  
+- **Route:** `/api/pokemon/list`  
 - **Header:** Authorization Bearer `{{$token}}`
 
-**Retornos**:
-1. **Sucesso**:
+**Responses**:
+1. **Success**:
    ```json
    [
        {
@@ -291,14 +291,14 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    ]
    ```
 
-2. **Erro - Token faltando**:
+2. **Error - Missing token**:
    ```json
    {
        "message": "Treinador, faltou informar seu token"
    }
    ```
 
-3. **Erro - Token inválido**:
+3. **Error - Invalid token**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
@@ -307,9 +307,9 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-#### **7. Pesquisa de Pokémon**
-- **Método:** POST  
-- **Rota:** `/api/pokemon/view`  
+#### **7. Pokémon Search**
+- **Method:** POST  
+- **Route:** `/api/pokemon/view`  
 - **Header:** Authorization Bearer `{{$token}}`
 
 **Payload**:
@@ -319,8 +319,8 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 }
 ```
 
-**Retornos**:
-1. **Sucesso**:
+**Responses**:
+1. **Success**:
    ```json
    {
        "id": 7,
@@ -345,14 +345,14 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
    }
    ```
 
-2. **Erro - Pokémon não encontrado**:
+2. **Error - Pokémon not found**:
    ```json
    {
        "message": "Pokémon não encontrado!"
    }
    ```
 
-3. **Erro - Token inválido**:
+3. **Error - Invalid token**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
@@ -361,5 +361,7 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ---
 
-### **Considerações Finais**
-A API Pokémon foi criada para treinar habilidades práticas em desenvolvimento de APIs RESTful e gerenciamento de dados. 🚀
+### **Final Considerations**
+The Pokémon API was created to train practical skills in RESTful API development and data management. 🚀
+
+---
