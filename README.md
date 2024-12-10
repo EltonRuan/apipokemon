@@ -1,66 +1,367 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## **Project Description: Pokemon API - Sao Paulo Skills 2024**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a practical simulation for the São Paulo Skills 2024 competition. It aims to create and manipulate a RESTful API to manage trainer and Pokémon data. The goal is to simulate a registration and query system inspired by the Pokémon universe, promoting the development of programming and logic skills.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### **Competition Context**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Sao Paulo Skills** is a competition that challenges young professionals to demonstrate their technical skills in various areas, including programming. This project simulates real-world scenarios, allowing participants to test their API development skills.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+### **Technologies Used**
+- **PHP**  
+- **MySQL**  
+- **Laravel**  
+- **Postman**  
+- **Composer**  
+- **Visual Studio Code**  
+- **XAMPP**  
+- **MySQL Workbench**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### **Installation and Setup**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### **Prerequisites**
+- PHP 7.4 or higher.  
+- MySQL installed.  
+- Composer.  
 
-## Laravel Sponsors
+#### **Step-by-Step**
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/EltonRuan/apipokemon/
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Install Dependencies**:
+   ```bash
+   composer install
+   ```
 
-### Premium Partners
+3. **Configure the .env File**:
+   Update the database credentials in the `.env` file:
+   ```plaintext
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=apipokemon
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. **Run the Migrations**:
+   ```bash
+   php artisan migrate
+   ```
 
-## Contributing
+5. **Start the Server**:
+   ```bash
+   php artisan serve
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+### **Routes and Responses**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### **1. Trainer Registration**
+- **Method:** POST  
+- **Route:** `/api/signup`
+  
+**Payload**:
+```json
+{
+    "name": "Elton",
+    "lastname": "Santos",
+    "birthdate": "2023-10-14",
+    "city": "city1",
+    "username": "EltonRuan",
+    "password": "pass12345"
+}
+```
 
-## Security Vulnerabilities
+**Responses**:
+1. **Success**:
+   ```json
+   {
+       "message": "Treinador, você foi registrado com sucesso na sua Pokédex"
+   }
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. **Error - User already registered**:
+   ```json
+   {
+       "message": "Não foi possível realizar seu cadastro na Pokédex devido ao seu cadastro já existir, prossiga para o login na sua Pokédex"
+   }
+   ```
 
-## License
+3. **Error - Missing data**:
+   ```json
+   {
+       "message": "Não foi possível realizar seu cadastro na Pokédex devido a informações faltando ou conflitantes"
+   }
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+#### **2. Trainer Login**
+- **Method:** POST  
+- **Route:** `/api/signin`
+  
+**Payload**:
+```json
+{
+    "username": "EltonRuan",
+    "password": "pass12345"
+}
+```
+
+**Responses**:
+1. **Success**:
+   ```json
+   {
+       "token": "5PMhamPSxmxOO3B0affSyTAN1xtZHM2adgcoFpRgjUII1QeC6GqlArSFrbqS"
+   }
+   ```
+
+2. **Error - Missing data**:
+   ```json
+   {
+       "message": "Treinador, faltam dados para autenticar você na sua Pokédex"
+   }
+   ```
+
+3. **Error - Incorrect data**:
+   ```json
+   {
+       "message": "Treinador, parece que seus dados estão incorretos, confira e tente novamente"
+   }
+   ```
+
+---
+
+#### **3. Trainer Logout**
+- **Method:** GET  
+- **Route:** `/api/logout`  
+- **Header:** Authorization Bearer `{{$token}}`
+
+**Responses**:
+1. **Success**:
+   ```json
+   {
+       "message": "Você saiu da sua Pokédex com sucesso"
+   }
+   ```
+
+2. **Error - Invalid token**:
+   ```json
+   {
+       "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+3. **Missing token**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
+   }
+   ```
+
+---
+
+#### **4. Trainer Data**
+- **Method:** GET  
+- **Route:** `/api/trainer/data`  
+- **Header:** Authorization Bearer `{{$token}}`
+
+**Responses**:
+1. **Success**:
+   ```json
+   {
+       "name": "Elton",
+       "lastname": "Santos",
+       "birthdate": "2023-10-14",
+       "city": "city1",
+       "username": "EltonRuan"
+   }
+   ```
+
+2. **Error - Invalid token**:
+   ```json
+   {
+       "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+3. **Missing token**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
+   }
+   ```
+
+---
+
+#### **5. Create or Edit Pokémon**
+- **Method:** POST  
+- **Route:** `/api/pokemon/read`  
+- **Header:** Authorization Bearer `{{$token}}`
+
+**Payload**:
+- **Create**:
+   ```json
+   {
+       "id": null,
+       "name": {"english": "Pikachu", "jp": "ピカチュウ"},
+       "type": ["Electric"],
+       "base": {"HP": 35, "Attack": 55, "Defense": 40},
+       "species": "Mouse Pokémon",
+       "description": "Pikachu that can generate powerful electricity.",
+       "evolution": [{"level": 1, "name": "Pichu"}, {"level": 2, "name": "Pikachu"}],
+       "profile": {"height": "0.4m", "weight": "6.0kg"},
+       "image": {"hires": "pikachu-front.png"}
+   }
+   ```
+- **Edit**:
+   ```json
+   {
+       "id": 2,
+       "name": {"english": "Pikachu", "jp": "ピカチュウ"},
+       ...
+   }
+   ```
+
+**Responses**:
+1. **Success - Pokémon Created**:
+   ```json
+   {
+       "message": "Pokémon adicionado com sucesso!"
+   }
+   ```
+
+2. **Success - Pokémon Updated**:
+   ```json
+   {
+       "message": "Pokémon atualizado com sucesso!"
+   }
+   ```
+
+3. **Error - Missing token**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
+   }
+   ```
+
+4. **Error - Invalid token**:
+   ```json
+   {
+       "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+---
+
+#### **6. Pokémon List**
+- **Method:** GET  
+- **Route:** `/api/pokemon/list`  
+- **Header:** Authorization Bearer `{{$token}}`
+
+**Responses**:
+1. **Success**:
+   ```json
+   [
+       {
+           "id": 1,
+           "name": {"english": "Bulbasaur", "jp": "フシギダネ"},
+           "type": ["Grass", "Poison"],
+           "base": {"HP": 45, "Attack": 49, "Defense": 49},
+           "species": "Seed Pokémon",
+           "description": "Bulbasaur can be seen napping in bright sunlight.",
+           "evolution": [{"level": 1, "name": "Bulbasaur"}, {"level": 2, "name": "Ivysaur"}],
+           "profile": {"height": "0.7m", "weight": "6.9kg"},
+           "image": {"hires": "bulbasaur-front.png"}
+       },
+       {
+           "id": 2,
+           "name": {"english": "Charmander", "jp": "ヒトカゲ"},
+           ...
+       }
+   ]
+   ```
+
+2. **Error - Missing token**:
+   ```json
+   {
+       "message": "Treinador, faltou informar seu token"
+   }
+   ```
+
+3. **Error - Invalid token**:
+   ```json
+   {
+       "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+---
+
+#### **7. Pokémon Search**
+- **Method:** POST  
+- **Route:** `/api/pokemon/view`  
+- **Header:** Authorization Bearer `{{$token}}`
+
+**Payload**:
+```json
+{
+    "id": 7
+}
+```
+
+**Responses**:
+1. **Success**:
+   ```json
+   {
+       "id": 7,
+       "name": {
+           "english": "Pikachu",
+           "jp": "ピカチュウ"
+       },
+       "type": ["Electric"],
+       "base": {
+           "HP": 35,
+           "Attack": 55,
+           "Defense": 40
+       },
+       "species": "Mouse Pokémon",
+       "description": "Pikachu that can generate powerful electricity.",
+       "evolution": [
+           {"level": 1, "name": "Pichu"},
+           {"level": 2, "name": "Pikachu"}
+       ],
+       "profile": {"height": "0.4m", "weight": "6.0kg"},
+       "image": {"hires": "pikachu-front.png"}
+   }
+   ```
+
+2. **Error - Pokémon not found**:
+   ```json
+   {
+       "message": "Pokémon não encontrado!"
+   }
+   ```
+
+3. **Error - Invalid token**:
+   ```json
+   {
+       "message": "Treinador, este token não é mais válido"
+   }
+   ```
+
+---
+
+### **Final Considerations**
+The Pokémon API was created to train practical skills in RESTful API development and data management. 🚀
+
+---
