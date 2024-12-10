@@ -38,6 +38,8 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 2. **Install Dependencies**:
    ```bash
    composer install
+   # or
+   composer update
    ```
 
 3. **Configure the .env File**:
@@ -51,7 +53,12 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
    DB_PASSWORD=
    ```
 
-4. **Run the Migrations**:
+4. Generate the application key:
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Run the Migrations**:
    ```bash
    php artisan migrate
    ```
