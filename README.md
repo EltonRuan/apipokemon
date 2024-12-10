@@ -1,7 +1,3 @@
-Aqui está a descrição do projeto organizada para uma apresentação mais clara e estruturada:
-
----
-
 ## **Descrição do Projeto: API Pokémon - São Paulo Skills 2024**
 
 O **API Pokémon - São Paulo Skills 2024** é um projeto desenvolvido como parte de um simulado prático da competição São Paulo Skills 2024. Ele visa a criação e manipulação de uma API RESTful para gerenciar dados de treinadores e Pokémon. O objetivo é simular um sistema de registro e consulta inspirado no universo Pokémon, promovendo o desenvolvimento de habilidades em programação e lógica.
@@ -9,6 +5,7 @@ O **API Pokémon - São Paulo Skills 2024** é um projeto desenvolvido como part
 ---
 
 ### **Contexto da Competição**
+
 A **São Paulo Skills** é uma competição que desafia jovens profissionais a demonstrar suas competências técnicas em diversas áreas, incluindo programação. Este projeto simula cenários reais, permitindo que os participantes testem suas habilidades no desenvolvimento de APIs.
 
 ---
@@ -26,6 +23,7 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 ---
 
 ### **Instalação e Configuração**
+
 #### **Pré-requisitos**
 - PHP 7.4 ou superior.  
 - MySQL instalado.  
@@ -310,76 +308,51 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 ---
 
 #### **7. Pesquisa de Pokémon**
-- **Método:** POST
+- **Método:** POST  
 - **Rota:** `/api/pokemon/view`  
 - **Header:** Authorization Bearer `{{$token}}`
 
 **Payload**:
 ```json
 {
-    "id": 7,
+    "id": 7
 }
 ```
 
 **Retornos**:
 1. **Sucesso**:
-
-```json
-{
-    "id": 7,
-    "name": {
-        "english": "Pikachu",
-        "jp": "ピカチュウ"
-    },
-    "type": [
-        "Electric"
-    ],
-    "base": {
-        "HP": 35,
-        "Attack": 55,
-        "Defense": 40
-    ],
-    "species": "Mouse Pokémon",
-    "description": "Pikachu that can generate powerful electricity.",
-    "evolution": [
-        {
-            "level": 1,
-            "name": "Pichu"
-        },
-        {
-            "level": 2,
-            "name": "Pikachu"
-        }
-    ],
-    "profile": {
-        "height": "0.4m",
-        "weight": "6.0kg"
-    },
-    "image": {
-        "hires": "pikachu-front.png"
-    },
-    "trainer_id": 5,
-    "created_at": "2024-12-10T00:12:57.000000Z",
-    "updated_at": "2024-12-10T00:12:57.000000Z"
-}
-```
-
-2. **Erro - ID faltando**:
    ```json
    {
-       "message": "Treinador, faltou informar o número do Pokémon"
+       "id": 7,
+       "name": {
+           "english": "Pikachu",
+           "jp": "ピカチュウ"
+       },
+       "type": ["Electric"],
+       "base": {
+           "HP": 35,
+           "Attack": 55,
+           "Defense": 40
+       },
+       "species": "Mouse Pokémon",
+       "description": "Pikachu that can generate powerful electricity.",
+       "evolution": [
+           {"level": 1, "name": "Pichu"},
+           {"level": 2, "name": "Pikachu"}
+       ],
+       "profile": {"height": "0.4m", "weight": "6.0kg"},
+       "image": {"hires": "pikachu-front.png"}
    }
    ```
 
-
-3. **Erro - Token faltando**:
+2. **Erro - Pokémon não encontrado**:
    ```json
    {
-       "message": "Treinador, faltou informar seu token"
+       "message": "Pokémon não encontrado!"
    }
    ```
 
-4. **Erro - Token inválido**:
+3. **Erro - Token inválido**:
    ```json
    {
        "message": "Treinador, este token não é mais válido"
@@ -390,7 +363,3 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 ### **Considerações Finais**
 A API Pokémon foi criada para treinar habilidades práticas em desenvolvimento de APIs RESTful e gerenciamento de dados. 🚀
-
----
-
-Essa organização vai facilitar a visualização e compreensão do conteúdo durante a apresentação. Se precisar de mais ajustes, só avisar!
