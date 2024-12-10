@@ -1,12 +1,12 @@
-## **Project Description: Pokémon API - São Paulo Skills 2024**
+## **Project Description: Pokemon API - Sao Paulo Skills 2024**
 
-The **Pokémon API - São Paulo Skills 2024** is a project developed as part of a practical simulation for the São Paulo Skills 2024 competition. It aims to create and manipulate a RESTful API to manage trainer and Pokémon data. The goal is to simulate a registration and query system inspired by the Pokémon universe, promoting the development of programming and logic skills.
+The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a practical simulation for the São Paulo Skills 2024 competition. It aims to create and manipulate a RESTful API to manage trainer and Pokémon data. The goal is to simulate a registration and query system inspired by the Pokémon universe, promoting the development of programming and logic skills.
 
 ---
 
 ### **Competition Context**
 
-**São Paulo Skills** is a competition that challenges young professionals to demonstrate their technical skills in various areas, including programming. This project simulates real-world scenarios, allowing participants to test their API development skills.
+**Sao Paulo Skills** is a competition that challenges young professionals to demonstrate their technical skills in various areas, including programming. This project simulates real-world scenarios, allowing participants to test their API development skills.
 
 ---
 
