@@ -1,11 +1,15 @@
-### **Descrição do Projeto: API Pokémon - São Paulo Skills 2024**
+Aqui está a descrição do projeto organizada para uma apresentação mais clara e estruturada:
 
-O **API Pokémon - São Paulo Skills 2024** é um projeto desenvolvido como parte de um simulado prático da competição São Paulo Skills 2024, voltado para a criação e manipulação de uma API RESTful que gerencia dados de treinadores e Pokémon. O objetivo é simular um sistema de registro e consulta inspirado no universo Pokémon, promovendo o desenvolvimento de habilidades em programação e lógica.
+---
+
+## **Descrição do Projeto: API Pokémon - São Paulo Skills 2024**
+
+O **API Pokémon - São Paulo Skills 2024** é um projeto desenvolvido como parte de um simulado prático da competição São Paulo Skills 2024. Ele visa a criação e manipulação de uma API RESTful para gerenciar dados de treinadores e Pokémon. O objetivo é simular um sistema de registro e consulta inspirado no universo Pokémon, promovendo o desenvolvimento de habilidades em programação e lógica.
 
 ---
 
 ### **Contexto da Competição**
-A **São Paulo Skills** é uma competição que desafia jovens profissionais a demonstrar suas competências técnicas em diversas áreas, incluindo programação. Este projeto simula cenários reais, permitindo que os participantes testem suas habilidades em desenvolvimento de APIs.
+A **São Paulo Skills** é uma competição que desafia jovens profissionais a demonstrar suas competências técnicas em diversas áreas, incluindo programação. Este projeto simula cenários reais, permitindo que os participantes testem suas habilidades no desenvolvimento de APIs.
 
 ---
 
@@ -29,50 +33,46 @@ A **São Paulo Skills** é uma competição que desafia jovens profissionais a d
 
 #### **Passo a Passo**
 1. **Clone o Repositório**:
-   
-bash
+   ```bash
    git clone https://github.com/EltonRuan/apipokemon/
-
+   ```
 
 2. **Instale as Dependências**:
-   
-bash
+   ```bash
    composer install
-
+   ```
 
 3. **Configure o Arquivo .env**:
-   Atualize as credenciais de banco de dados:
-   
-plaintext
+   Atualize as credenciais de banco de dados no arquivo `.env`:
+   ```plaintext
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
    DB_DATABASE=apipokemon
    DB_USERNAME=root
    DB_PASSWORD=
-
+   ```
 
 4. **Execute as Migrações**:
-   
-bash
+   ```bash
    php artisan migrate
-
+   ```
 
 5. **Inicie o Servidor**:
-   
-bash
+   ```bash
    php artisan serve
-
+   ```
 
 ---
 
 ### **Rotas e Retornos**
+
 #### **1. Cadastro de Treinador**
 - **Método:** POST  
-- **Rota:** /api/signup
-
+- **Rota:** `/api/signup`
+  
 **Payload**:
-json
+```json
 {
     "name": "Elton",
     "lastname": "Santos",
@@ -81,95 +81,91 @@ json
     "username": "EltonRuan",
     "password": "pass12345"
 }
-
+```
 
 **Retornos**:
 1. **Sucesso**:
-   
-json
+   ```json
    {
        "message": "Treinador, você foi registrado com sucesso na sua Pokédex"
    }
+   ```
 
 2. **Erro - Usuário já cadastrado**:
-   
-json
+   ```json
    {
        "message": "Não foi possível realizar seu cadastro na Pokédex devido ao seu cadastro já existir, prossiga para o login na sua Pokédex"
    }
+   ```
 
 3. **Erro - Dados faltantes**:
-   
-json
+   ```json
    {
        "message": "Não foi possível realizar seu cadastro na Pokédex devido a informações faltando ou conflitantes"
    }
-
+   ```
 
 ---
 
 #### **2. Login de Treinador**
 - **Método:** POST  
-- **Rota:** /api/signin
-
+- **Rota:** `/api/signin`
+  
 **Payload**:
-json
+```json
 {
     "username": "EltonRuan",
     "password": "pass12345"
 }
-
+```
 
 **Retornos**:
 1. **Sucesso**:
-   
-json
+   ```json
    {
        "token": "5PMhamPSxmxOO3B0affSyTAN1xtZHM2adgcoFpRgjUII1QeC6GqlArSFrbqS"
    }
+   ```
 
 2. **Erro - Dados incorretos ou faltantes**:
-   
-json
+   ```json
    {
        "message": "Treinador, faltam dados para autenticar você na sua Pokédex"
    }
-
+   ```
 
 ---
 
 #### **3. Logout de Treinador**
 - **Método:** GET  
-- **Rota:** /api/logout  
-- **Header:** Authorization Bearer {{$token}}
+- **Rota:** `/api/logout`  
+- **Header:** Authorization Bearer `{{$token}}`
 
 **Retornos**:
 1. **Sucesso**:
-   
-json
+   ```json
    {
        "message": "Você saiu da sua Pokédex com sucesso"
    }
+   ```
 
 2. **Erro - Token inválido ou ausente**:
-   
-json
+   ```json
    {
        "message": "Treinador, este token não é mais válido"
    }
-
+   ```
 
 ---
 
 #### **4. Dados do Treinador**
 - **Método:** GET  
-- **Rota:** /api/trainer/data  
-- **Header:** Authorization Bearer {{$token}}
+- **Rota:** `/api/trainer/data`  
+- **Header:** Authorization Bearer `{{$token}}`
 
 **Retornos**:
 1. **Sucesso**:
-   
-json
+   ```json
    {
        "name": "Elton",
        "lastname": "Santos",
@@ -177,82 +173,78 @@ json
        "city": "city1",
        "username": "EltonRuan"
    }
+   ```
 
 2. **Erro - Token inválido ou ausente**:
-   
-json
+   ```json
    {
        "message": "Treinador, este token não é mais válido"
    }
-
+   ```
 
 ---
 
 #### **5. Criação ou Edição de Pokémon**
 - **Método:** POST  
-- **Rota:** /api/pokemon/create-or-update  
-- **Header:** Authorization Bearer {{$token}}
+- **Rota:** `/api/pokemon/create-or-update`  
+- **Header:** Authorization Bearer `{{$token}}`
 
 **Payload**:
 - **Criação**:
-  
-json
-  {
-      "id": null,
-      "name": {"english": "Pikachu", "jp": "ピカチュウ"},
-      "type": ["Electric"],
-      "base": {"HP": 35, "Attack": 55, "Defense": 40},
-      "species": "Mouse Pokémon",
-      "description": "Pikachu that can generate powerful electricity.",
-      "evolution": [{"level": 1, "name": "Pichu"}, {"level": 2, "name": "Pikachu"}],
-      "profile": {"height": "0.4m", "weight": "6.0kg"},
-      "image": {"hires": "pikachu-front.png"}
-  }
-
+   ```json
+   {
+       "id": null,
+       "name": {"english": "Pikachu", "jp": "ピカチュウ"},
+       "type": ["Electric"],
+       "base": {"HP": 35, "Attack": 55, "Defense": 40},
+       "species": "Mouse Pokémon",
+       "description": "Pikachu that can generate powerful electricity.",
+       "evolution": [{"level": 1, "name": "Pichu"}, {"level": 2, "name": "Pikachu"}],
+       "profile": {"height": "0.4m", "weight": "6.0kg"},
+       "image": {"hires": "pikachu-front.png"}
+   }
+   ```
 - **Edição**:
-  
-json
-  {
-      "id": 2,
-      "name": {"english": "Pikachu", "jp": "ピカチュウ"},
-      ...
-  }
-
+   ```json
+   {
+       "id": 2,
+       "name": {"english": "Pikachu", "jp": "ピカチュウ"},
+       ...
+   }
+   ```
 
 **Retornos**:
 1. **Sucesso - Pokémon Criado**:
-   
-json
+   ```json
    {
        "message": "Pokémon adicionado com sucesso!"
    }
+   ```
 
 2. **Sucesso - Pokémon Atualizado**:
-   
-json
+   ```json
    {
        "message": "Pokémon atualizado com sucesso!"
    }
+   ```
 
 3. **Erro - Token inválido ou dados faltantes**:
-   
-json
+   ```json
    {
        "message": "Erro ao processar o Pokémon. Verifique os dados enviados."
    }
-
+   ```
 
 ---
 
 #### **6. Listagem de Pokémon**
 - **Método:** GET  
-- **Rota:** /api/pokemon/list  
-- **Header:** Authorization Bearer {{$token}}
+- **Rota:** `/api/pokemon/list`  
+- **Header:** Authorization Bearer `{{$token}}`
 
 **Retornos**:
 1. **Sucesso**:
-   
-json
+   ```json
    [
        {
            "id": 1,
@@ -271,16 +263,20 @@ json
            ...
        }
    ]
+   ```
 
 2. **Erro - Token inválido**:
-   
-json
+   ```json
    {
        "message": "Treinador, este token não é mais válido"
    }
-
+   ```
 
 ---
 
 ### **Considerações Finais**
 A API Pokémon foi criada para treinar habilidades práticas em desenvolvimento de APIs RESTful e gerenciamento de dados. 🚀
+
+---
+
+Essa organização vai facilitar a visualização e compreensão do conteúdo durante a apresentação. Se precisar de mais ajustes, só avisar!
