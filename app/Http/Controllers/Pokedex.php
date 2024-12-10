@@ -52,7 +52,7 @@ class Pokedex extends Controller
                 'message' => 'Treinador, você foi registrado com sucesso na sua Pokédex'
             ], 201);
         } catch (\Exception $e) {
-            // Caso ocorra outro erro
+            // Caso ocorra outro erro   
             return response()->json([
                 'message' => 'Não foi possível realizar seu cadastro na Pokédex devido a informações faltando ou conflitantes',
             ], 422);
@@ -80,7 +80,7 @@ class Pokedex extends Controller
         // Se o treinador não existir ou a senha estiver incorreta
         if (!$trainer || !Hash::check($validated['password'], $trainer->password)) {
             return response()->json([
-                'message' => 'Treinador, parece que seus dados estão incorretos, confira e tente novamente',
+                    'message' => 'Treinador, parece que seus dados estão incorretos, confira e tente novamente',
             ], 401);
         }
 
