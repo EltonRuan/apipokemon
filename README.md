@@ -22,7 +22,7 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 
 **Sao Paulo Skills** is a competition that challenges young professionals to demonstrate their technical skills in various areas, including programming. This project simulates real-world scenarios, allowing participants to test their API development skills.
 
-<h2 id="technologies-and-tools-used">🛠️ TECHNOLOGIES AND TOOLS USED</h2>
+<h2 id="technologies-and-tools-used">TECHNOLOGIES AND TOOLS USED</h2>
 
 - **PHP**  
 - **MySQL**  
@@ -81,7 +81,7 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 
 ---
 
-## ROUTES AND RESPONSES
+<h2 id="routes-and-responses">🚀 Routes and Responses</h2>
 
 #### **1. Trainer Registration**
 - **Method:** POST  
