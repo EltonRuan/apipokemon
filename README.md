@@ -1,17 +1,30 @@
 ## **Project Description: Pokemon API - Sao Paulo Skills 2024**
 
-## ABOUT PROJECT
+<div align='center'>
+ <img style="width:100%" src="https://capsule-render.vercel.app/api?type=soft&height=200&color=FFFFFF&text=Pokemon%20API%20API%20Sao%20Paulo%20Skills%202024&fontSize=40&fontAlign=50&strokeWidth=0&descAlignY=80&stroke=000000">
+</div>
+
+<nav align="center">
+  <h2>🔗 NAVIGATION</h2>
+  <p>
+    <a href="#about-this-project">ABOUT THIS PROJECT</a> |
+    <a href="#competition-context">COMPETITION CONTEXT</a> |
+    <a href="#technologies-and-tools-used-️">TECHNOLOGIES AND TOOLS USED</a> |
+    <a href="#installation-and-setup">INSTALLATION AND SETUP</a> |
+    <a href="#functionality-routes-and-methods">ROUTES AND RESPONSES</a> |
+    <a href="#final-considerations">FINAL CONSIDERATIONS</a>
+  </p>
+</nav>
+
+
+## ABOUT THIS PROJECT
 The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a practical simulation for the São Paulo Skills 2024 competition. It aims to create and manipulate a RESTful API to manage trainer and Pokémon data. The goal is to simulate a registration and query system inspired by the Pokémon universe, promoting the development of programming and logic skills.
 
----
-
-### **Competition Context**
+## COMPETITION CONTEXT
 
 **Sao Paulo Skills** is a competition that challenges young professionals to demonstrate their technical skills in various areas, including programming. This project simulates real-world scenarios, allowing participants to test their API development skills.
 
----
-
-### **Technologies Used**
+## TECNOLOGIES AND TOOLS USED
 - **PHP**  
 - **MySQL**  
 - **Laravel**  
@@ -21,16 +34,14 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 - **XAMPP**  
 - **MySQL Workbench**
 
----
+## INSTALLATION AND SETUP
 
-### **Installation and Setup**
-
-#### **Prerequisites**
+## PREREQUISITES
 - PHP 7.4 or higher.  
 - MySQL installed.  
 - Composer.  
 
-#### **Step-by-Step**
+## STEP-BY-STEP
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/EltonRuan/apipokemon/
@@ -71,7 +82,7 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 
 ---
 
-### **Routes and Responses**
+## ROUTES AND RESPONSES
 
 #### **1. Trainer Registration**
 - **Method:** POST  
