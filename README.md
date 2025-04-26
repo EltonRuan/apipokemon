@@ -1,7 +1,7 @@
 ## **Project Description: Pokemon API - Sao Paulo Skills 2024**
 
 <div align='center'>
- <img style="width:100%" src="https://capsule-render.vercel.app/api?type=soft&height=200&color=FFFFFF&text=Pokemon%20API%20API%20Sao%20Paulo%20Skills%202024&fontSize=40&fontAlign=50&strokeWidth=0&descAlignY=80&stroke=000000">
+ <img style="width:100%" src="https://capsule-render.vercel.app/api?type=soft&height=200&color=FFFFFF&text=Pokemon%20API%20Sao%20Paulo%20Skills%202024&fontSize=40&fontAlign=50&strokeWidth=0&descAlignY=80&stroke=000000">
 </div>
 
 <nav align="center">
