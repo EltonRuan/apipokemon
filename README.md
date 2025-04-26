@@ -81,7 +81,7 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 
 ---
 
-<h2 id="routes-and-responses">🚀 Routes and Responses</h2>
+<h2 id="routes-and-responses">🚀 ROUTES AND RESPONSES</h2>
 
 #### **1. Trainer Registration**
 - **Method:** POST  
