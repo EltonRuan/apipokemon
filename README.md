@@ -381,7 +381,6 @@ The **Pokemon API - Sao Paulo Skills 2024** is a project developed as part of a 
 
 <p>This documentation was created to summarize and present the purpose behind the <strong>Pokemon API - São Paulo Skills 2024</strong> project. Developed in a competition simulation environment, it highlights the importance of combining technical knowledge with creativity and organization in real-world-like challenges.</p> 
 <p>Feel free to explore the project, analyze the code, and adapt the concepts for your own studies or future applications. Projects like this are an excellent opportunity to strengthen skills in API development, database management, and logical structuring.</p> 
-<p>Never stop practicing and challenging yourself. Real growth happens when you consistently seek to apply and expand your knowledge. Keep coding, keep building, and enjoy the journey!</p> 
 <p>Good luck on your path, and congratulations for reaching this stage!</p> 
 <br><br> 
 <p><strong>© 2025 EltonRuan. All rights reserved.</strong></p> 
