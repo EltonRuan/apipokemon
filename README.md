@@ -9,7 +9,7 @@
     <a href="#competition-context">COMPETITION CONTEXT</a> |
     <a href="#technologies-and-tools-used">TECHNOLOGIES AND TOOLS USED</a> |
     <a href="#installation-and-setup">INSTALLATION AND SETUP</a> |
-    <a href="#functionality-routes-and-methods">ROUTES AND RESPONSES</a> |
+    <a href="#routes-and-responses">ROUTES AND RESPONSES</a> |
     <a href="#final-considerations">FINAL CONSIDERATIONS</a>
   </p>
 </nav>
