@@ -7,7 +7,7 @@
   <p>
     <a href="#about-this-project">ABOUT THIS PROJECT</a> |
     <a href="#competition-context">COMPETITION CONTEXT</a> |
-    <a href="#technologies-and-tools-used-️">TECHNOLOGIES AND TOOLS USED</a> |
+    <a href="#technologies-and-tools-used">TECHNOLOGIES AND TOOLS USED</a> |
     <a href="#installation-and-setup">INSTALLATION AND SETUP</a> |
     <a href="#functionality-routes-and-methods">ROUTES AND RESPONSES</a> |
     <a href="#final-considerations">FINAL CONSIDERATIONS</a>
